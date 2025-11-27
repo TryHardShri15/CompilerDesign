@@ -1,0 +1,13 @@
+%{ 
+char conv(char c){ 
+    if(c>='a' && c<='z') return ((c-'a'+3)%26)+'a'; 
+    if(c>='A' && c<='Z') return ((c-'A'+3)%26)+'A'; 
+    return c; 
+} 
+%} 
+ 
+%% 
+.    { ECHO = conv(yytext[0]); putchar(ECHO); } 
+%% 
+ 
+int main(){ yylex(); }
