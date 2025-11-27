@@ -1,0 +1,16 @@
+%{ 
+int words=0, chars=0, blanks=0, lines=0; 
+%} 
+ 
+%% 
+[ \t]+     { blanks += yyleng; chars += yyleng; } 
+\n         { lines++; chars++; } 
+[a-zA-Z0-9_]+ { words++; chars+=yyleng; } 
+.          { chars++; } 
+%% 
+ 
+int main(){ 
+    yylex(); 
+    printf("Words=%d\nChars=%d\nBlanks=%d\nLines=%d\n", words, 
+chars, blanks, lines); 
+}
