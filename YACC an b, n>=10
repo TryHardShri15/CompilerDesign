@@ -1,0 +1,55 @@
+LEX FILE
+
+%{ 
+#include "y.tab.h" 
+%} 
+ 
+%% 
+ 
+a     { return A; } 
+b     { return B; } 
+\n    { return 0; } 
+.     { return INVALID; } 
+ 
+%% 
+ 
+YACC FILE 
+%{ 
+#include <stdio.h> 
+ 
+int countA = 0; 
+int valid = 1; 
+ 
+int yylex(); 
+int yyerror(char *s); 
+%} 
+ 
+%token A B INVALID 
+ 
+%% 
+S : A S   { countA++; } 
+  | B     { 
+              if (countA >= 10) 
+                  valid = 1; 
+              else 
+                  valid = 0; 
+          } 
+  ; 
+%% 
+ 
+int main() { 
+    printf("Enter string: "); 
+    yyparse(); 
+ 
+    if (valid) 
+        printf("Valid string (a^n b , n>=10)\n"); 
+    else 
+        printf("Invalid string\n"); 
+ 
+    return 0; 
+} 
+ 
+int yyerror(char *s) { 
+    valid = 0; 
+    return 0; 
+}
