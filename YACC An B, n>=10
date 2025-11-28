@@ -53,3 +53,9 @@ int yyerror(char *s) {
     valid = 0; 
     return 0; 
 }
+
+
+
+Example: aaaaaaaaaab
+OUTPUT: 
+Valid string (a^n b, n>=10)
