@@ -11,3 +11,8 @@ char conv(char c){
 %% 
  
 int main(){ yylex(); }
+
+
+example input : fzb
+OUTPUT: 
+ice
