@@ -75,3 +75,9 @@ int yyerror() {
     flag = 0; 
     return 0; 
 }
+
+
+Example: a1 + 3 * (b2 - 1)
+
+OUTPUT:
+Valid Expression
